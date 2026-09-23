@@ -1,4 +1,4 @@
-# TokenChart
+# TokenKoi
 
 大模型 token 价格与套餐比价导航。
 
@@ -8,7 +8,7 @@
 
 ## 命名与域名
 
-品牌 TokenChart。`tokenchart.io` 与 `tokenchart.org` 未注册、可用；`tokenchart.com` 由 Dan.com 持有待售，持有方是域名投资者，不是运营中的竞品。
+品牌 TokenKoi（koi 即锦鲤），域名 `tokenkoi.com`。
 
 ## 现阶段范围
 
@@ -21,4 +21,4 @@
 - 跑路黑名单与近 30 天降价榜。
 - agent 比较页（CLI / TUI / GUI 等形态字段）。
 
-站点计划以 GitHub Pages + 自定义域名承载，只发布构建产物、不发布源码。
+仓库公开，站点计划以 GitHub Pages + 自定义域名 `tokenkoi.com` 承载。
