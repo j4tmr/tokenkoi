@@ -1,0 +1,48 @@
+name: 同步价格
+
+on:
+  # 主路径：采价 Worker 发现价格变化后触发
+  repository_dispatch:
+    types: [prices-updated]
+  # 兜底：每天一次（北京时间 09:41）。Worker 挂了或 token 过期时，README 上的核对时间会如实变旧
+  schedule:
+    - cron: "41 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-prices
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: 拉取价格并生成 README 摘要
+        env:
+          PRICES_URL: ${{ vars.PRICES_URL }}
+        run: node scripts/sync.mjs
+
+      - name: 有变化才提交
+        run: |
+          if [ ! -f data/prices.json ]; then
+            echo "尚无数据"
+            exit 0
+          fi
+          git add data README.md
+          if git diff --cached --quiet; then
+            echo "数据无变化"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): 同步价格 $(jq -r .updated_at data/prices.json)"
+          git push
