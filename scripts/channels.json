@@ -1,0 +1,13 @@
+{
+  "openai": "https://platform.openai.com",
+  "anthropic": "https://platform.claude.com",
+  "gemini": "https://aistudio.google.com",
+  "deepseek": "https://platform.deepseek.com",
+  "xai": "https://console.x.ai",
+  "mistral": "https://console.mistral.ai",
+  "zai": "https://z.ai/model-api",
+  "moonshot": "https://platform.kimi.ai",
+  "minimax": "https://platform.minimax.io",
+  "dashscope": "https://bailian.console.aliyun.com",
+  "volcengine": "https://console.volcengine.com/ark"
+}
